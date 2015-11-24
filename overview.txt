@@ -1,0 +1,32 @@
+passport
+|
+|--Config
+	|
+	| - passport - Where we define our LocalStrategy, which is how passport handles user authentication
+|
+|--Controllers
+	|
+	| - AuthController - passport.authenticate('local', someCallback) - Performing an authentication check.  This decides whether or not we should accept a user as being authenticated by using the LocalStrategy we defined.
+	|
+	| - req.login - This is a method that actually logs the user in to our server -> stores the user that's logged in at req.user and modifies the req.session object
+|
+|--Models
+	|
+	| - Pre-Save - Hashes passwords based on whether or not they are new / modified
+	| - ComparePasswords - Hashes the password from the login screen to see if it matches what's in the DB
+|
+|--Public
+|
+|app.js
+	|
+	| - AuthController
+	| - /api/me - Route for grabbing the logged in user
+	| - app.use(passport.initialize()) - Required for Passport.js
+	| - app.use(passport.session()) - Required for Passport.js
+	| - app.use(passportConfig.ensureAuthenticated); - Used to lock down routes below this line
+
+
+
+
+
+
